@@ -1,0 +1,10 @@
+D:\LEGION\Documents\Visual Studio Project\Web\NovelLibrary\NovelLibraryModel\bin\Debug\NovelLibraryModel.dll
+D:\LEGION\Documents\Visual Studio Project\Web\NovelLibrary\NovelLibraryModel\bin\Debug\NovelLibraryModel.pdb
+D:\LEGION\Documents\Visual Studio Project\Web\NovelLibrary\NovelLibraryModel\bin\Debug\NovelLibraryModel.xml
+D:\LEGION\Documents\Visual Studio Project\Web\NovelLibrary\NovelLibraryModel\obj\Debug\NovelLibraryModel.vbproj.AssemblyReference.cache
+D:\LEGION\Documents\Visual Studio Project\Web\NovelLibrary\NovelLibraryModel\obj\Debug\NovelLibraryModel.Resources.resources
+D:\LEGION\Documents\Visual Studio Project\Web\NovelLibrary\NovelLibraryModel\obj\Debug\NovelLibraryModel.vbproj.GenerateResource.cache
+D:\LEGION\Documents\Visual Studio Project\Web\NovelLibrary\NovelLibraryModel\obj\Debug\NovelLibraryModel.vbproj.CoreCompileInputs.cache
+D:\LEGION\Documents\Visual Studio Project\Web\NovelLibrary\NovelLibraryModel\obj\Debug\NovelLibraryModel.dll
+D:\LEGION\Documents\Visual Studio Project\Web\NovelLibrary\NovelLibraryModel\obj\Debug\NovelLibraryModel.xml
+D:\LEGION\Documents\Visual Studio Project\Web\NovelLibrary\NovelLibraryModel\obj\Debug\NovelLibraryModel.pdb
