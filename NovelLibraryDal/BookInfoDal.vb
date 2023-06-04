@@ -36,7 +36,8 @@ Partial Public Class BookInfoDal
         Dim sqlText = "select bookId,bookName,authorId,ui.userName,bi.categoryId,
             ci.categoryName,cover,introduction,createTime,updateTime,bi.isDelete from bookinfo as bi 
             inner join userinfo as ui on bi.authorId=ui.userId 
-            inner join categoryinfo as ci on bi.categoryId=ci.categoryId"
+            inner join categoryinfo as ci on bi.categoryId=ci.categoryId
+						where bi.isDelete=0"
         Dim listP As MySqlParameter() = {}
         Dim dt As DataTable = sqlHelper.ExecuteDataTable(sqlText, listP)
         Dim list As New List(Of BookInfo)
@@ -84,6 +85,19 @@ Partial Public Class BookInfoDal
         Return sqlHelper.ExecuteNonQuery(sqlText, listP)
     End Function
 
+    Public Function CreateBookCover(name As String, aid As Integer, cid As Integer, txt As String, cover As String) As Integer
+        Dim sqlText = "insert into bookinfo(bookName,authorId,categoryId,cover,introduction,createTime,updateTime) 
+            values(@name,@aid,@cid,@cover,@txt,NOW(),NOW())"
+        Dim listP As MySqlParameter() = {
+            New MySqlParameter("@name", name),
+            New MySqlParameter("@aid", aid),
+            New MySqlParameter("@cid", cid),
+            New MySqlParameter("@cover", cover),
+            New MySqlParameter("@txt", txt)
+        }
+        Return sqlHelper.ExecuteNonQuery(sqlText, listP)
+    End Function
+
     Public Function GetBookInfoByBookId(id As Integer) As List(Of BookInfo)
         Dim sqlText = "select bookId,bookName,authorId,ui.userName,bi.categoryId,
             ci.categoryName,cover,introduction,createTime,updateTime,bi.isDelete from bookinfo as bi 
@@ -107,6 +121,7 @@ Partial Public Class BookInfoDal
             bi.uTime = Convert.ToDateTime(row("updateTime"))
             bi.bookIntroduction = row("introduction")
             bi.iDelete = Convert.ToBoolean(row("isDelete"))
+            bi.coverAddress = row("cover").ToString
             list.Add(bi)
         Next
         Return list
@@ -117,6 +132,18 @@ Partial Public Class BookInfoDal
         Dim listP As MySqlParameter() = {
             New MySqlParameter("@bname", name),
             New MySqlParameter("@cid", cid),
+            New MySqlParameter("@txt", txt),
+            New MySqlParameter("@bid", bid)
+        }
+        Return sqlHelper.ExecuteNonQuery(sqlText, listP)
+    End Function
+
+    Public Function UpdateBookInfoAndCover(name As String, cid As Integer, txt As String, bid As Integer, cover As String) As Integer
+        Dim sqlText = "update bookinfo set bookName=@bname, categoryId=@cid,cover=@cover, introduction=@txt where bookId=@bid"
+        Dim listP As MySqlParameter() = {
+            New MySqlParameter("@bname", name),
+            New MySqlParameter("@cid", cid),
+            New MySqlParameter("@cover", cover),
             New MySqlParameter("@txt", txt),
             New MySqlParameter("@bid", bid)
         }

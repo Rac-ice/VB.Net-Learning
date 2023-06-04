@@ -224,14 +224,5 @@
       <Name>NovelLibraryModel</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <None Include="upload\1509s.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="upload\3680s.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="upload\24879s.jpg" />
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

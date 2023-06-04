@@ -41,15 +41,17 @@ Partial Class FormBookInfo
         Me.chapterName = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.lbType = New System.Windows.Forms.Label()
-        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
+        Me.pbCover = New System.Windows.Forms.PictureBox()
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.AddToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.UpdateToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.lbAuthorId = New System.Windows.Forms.Label()
+        Me.pbOne = New System.Windows.Forms.PictureBox()
         CType(Me.dgvChapterList, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.pbCover, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ContextMenuStrip1.SuspendLayout()
+        CType(Me.pbOne, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Label1
@@ -215,13 +217,15 @@ Partial Class FormBookInfo
         Me.lbType.Size = New System.Drawing.Size(0, 12)
         Me.lbType.TabIndex = 17
         '
-        'PictureBox1
+        'pbCover
         '
-        Me.PictureBox1.Location = New System.Drawing.Point(265, 25)
-        Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(90, 120)
-        Me.PictureBox1.TabIndex = 13
-        Me.PictureBox1.TabStop = False
+        Me.pbCover.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.pbCover.Location = New System.Drawing.Point(265, 25)
+        Me.pbCover.Name = "pbCover"
+        Me.pbCover.Size = New System.Drawing.Size(90, 120)
+        Me.pbCover.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.pbCover.TabIndex = 13
+        Me.pbCover.TabStop = False
         '
         'ContextMenuStrip1
         '
@@ -250,17 +254,28 @@ Partial Class FormBookInfo
         Me.lbAuthorId.TabIndex = 18
         Me.lbAuthorId.Visible = False
         '
+        'pbOne
+        '
+        Me.pbOne.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.pbOne.Location = New System.Drawing.Point(265, 25)
+        Me.pbOne.Name = "pbOne"
+        Me.pbOne.Size = New System.Drawing.Size(90, 120)
+        Me.pbOne.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.pbOne.TabIndex = 19
+        Me.pbOne.TabStop = False
+        '
         'FormBookInfo
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(818, 361)
         Me.ContextMenuStrip = Me.ContextMenuStrip1
+        Me.Controls.Add(Me.pbOne)
         Me.Controls.Add(Me.lbAuthorId)
         Me.Controls.Add(Me.lbType)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.btnSave)
-        Me.Controls.Add(Me.PictureBox1)
+        Me.Controls.Add(Me.pbCover)
         Me.Controls.Add(Me.txtName)
         Me.Controls.Add(Me.ccbType)
         Me.Controls.Add(Me.lbNewTime)
@@ -280,8 +295,9 @@ Partial Class FormBookInfo
         Me.Text = "详细信息"
         CType(Me.dgvChapterList, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox1.ResumeLayout(False)
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.pbCover, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ContextMenuStrip1.ResumeLayout(False)
+        CType(Me.pbOne, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -298,7 +314,7 @@ Partial Class FormBookInfo
     Friend WithEvents lbNewTime As Label
     Friend WithEvents ccbType As ComboBox
     Friend WithEvents txtName As TextBox
-    Friend WithEvents PictureBox1 As PictureBox
+    Friend WithEvents pbCover As PictureBox
     Friend WithEvents btnSave As Button
     Friend WithEvents dgvChapterList As DataGridView
     Friend WithEvents GroupBox1 As GroupBox
@@ -310,4 +326,5 @@ Partial Class FormBookInfo
     Friend WithEvents AddToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents UpdateToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents lbAuthorId As Label
+    Friend WithEvents pbOne As PictureBox
 End Class

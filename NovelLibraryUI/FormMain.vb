@@ -68,6 +68,7 @@ Public Class FormMain
         Dim formBookInfo As New FormBookManager
         formBookInfo.Tag = Tag
         formBookInfo.ShowDialog()
+        LoadBookList()
     End Sub
 
     Private Sub dgvBookList_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvBookList.CellDoubleClick

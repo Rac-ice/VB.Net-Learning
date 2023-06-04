@@ -1,4 +1,5 @@
-﻿Imports NovelLibraryBll
+﻿Imports System.IO
+Imports NovelLibraryBll
 Imports NovelLibraryModel
 
 Public Class FormBookInfo
@@ -11,13 +12,14 @@ Public Class FormBookInfo
     Private Sub FormBookInfo_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         GetInfo()
         GetList()
+        pbCover.Visible = False
         If Tag(0) = 0 Or Tag(0) = 999 Then
             btnSave.Visible = False
             AddToolStripMenuItem.Visible = False
             UpdateToolStripMenuItem.Visible = False
+
         End If
         If Tag(1) = lbAuthorId.Text Then
-
         Else
             btnSave.Visible = False
             AddToolStripMenuItem.Visible = False
@@ -32,6 +34,10 @@ Public Class FormBookInfo
         lbName.Text = list(0).uName
         lbType.Text = list(0).cName
         lbAuthorId.Text = list(0).aId
+        If list(0).coverAddress <> "" Then
+            pbCover.ImageLocation = list(0).coverAddress
+            pbOne.ImageLocation = list(0).coverAddress
+        End If
         If chapterList.Count > 0 Then
             llbNewChapter.Text = chapterList(0).cName
             lbNewTime.Text = chapterList(0).pTime
@@ -68,16 +74,35 @@ Public Class FormBookInfo
             ccbType.Visible = True
             btnSave.Text = "保存"
             GetCategoryList()
+            pbCover.Visible = True
+            pbOne.Visible = False
         Else
-            If biBll.UpdateBookInfo(txtName.Text, ccbType.SelectedValue, txt.Text, Tag(3)) Then
-                GetInfo()
-                txt.ReadOnly = True
-                txtName.ReadOnly = True
-                lbType.Visible = True
-                ccbType.Visible = False
-                btnSave.Text = "修改"
-                MessageBox.Show("OK")
+            If SavePath = "" Then
+                If biBll.UpdateBookInfo(txtName.Text, ccbType.SelectedValue, txt.Text, Tag(3)) Then
+                    GetInfo()
+                    txt.ReadOnly = True
+                    txtName.ReadOnly = True
+                    lbType.Visible = True
+                    ccbType.Visible = False
+                    btnSave.Text = "修改"
+                    pbCover.Visible = False
+                    pbOne.Visible = True
+                    MessageBox.Show("OK")
+                End If
+            Else
+                If biBll.UpdateBookInfoAndCover(txtName.Text, ccbType.SelectedValue, txt.Text, Tag(3), SavePath) Then
+                    GetInfo()
+                    txt.ReadOnly = True
+                    txtName.ReadOnly = True
+                    lbType.Visible = True
+                    ccbType.Visible = False
+                    btnSave.Text = "修改"
+                    pbCover.Visible = False
+                    pbOne.Visible = True
+                    MessageBox.Show("OK")
+                End If
             End If
+
             result = DialogResult.OK
         End If
     End Sub
@@ -153,7 +178,7 @@ Public Class FormBookInfo
 
             GetList()
 
-            Else
+        Else
             MessageBox.Show("请选择要修改的章节")
         End If
     End Sub
@@ -174,5 +199,27 @@ Public Class FormBookInfo
         }
         formChapterContent.Tag = Tag
         formChapterContent.ShowDialog()
+    End Sub
+
+    Dim SavePath As String
+
+    Private Sub pbCover_DoubleClick(sender As Object, e As EventArgs) Handles pbCover.DoubleClick
+        Dim open As New OpenFileDialog
+        open.Title = "选择图片"
+        open.Filter = "图片文件（*.jpg;*.bmp;*.gif;*.rng）|*.jpg;*.bmp;*.gif;*.rng"
+        open.Multiselect = False
+        If open.ShowDialog() = DialogResult.OK Then
+            Dim sourcePath As String = open.FileName
+            Directory.SetCurrentDirectory(Application.StartupPath) ' 将当前工作目录设置为项目的根目录
+            Dim fileName As String = Path.GetFileName(sourcePath)
+            If Directory.Exists("upload\" + Tag(2).ToString + "\") Then
+            Else
+                Directory.CreateDirectory("upload\" + Tag(2).ToString + "\")
+            End If
+            Dim destPath As String = "upload\" + Tag(2).ToString + "\" + fileName ' 相对路径
+            File.Copy(sourcePath, destPath, True) ' 复制图片到指定路径下
+            pbCover.ImageLocation = destPath ' 显示图片
+            SavePath = destPath
+        End If
     End Sub
 End Class
